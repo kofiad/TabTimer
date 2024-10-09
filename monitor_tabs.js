@@ -1,21 +1,29 @@
-// Get Message from content.js
-chrome.runtime.onMessage.addListener(async (message, _sender, sendResponse) => {
-  const timeoutInMilliSeconds = Number(message) * 60 * 1000;
-  chrome.tabs.query({})
-    .then((tabs) => {
-      console.log(`Timeout: ${message}, Number of tabs: ${tabs.length}`);
+let timeoutInMilliSeconds;
+chrome.runtime.onMessage.addListener(async (message, _sender, _sendResponse) => {
+  console.log("Submit");
+  timeoutInMilliSeconds = Number(message) * 60 * 1000;
+  monitor_tabs(timeoutInMilliSeconds);
+});
 
+
+chrome.tabs.onCreated.addListener((_tab)=> {
+  monitor_tabs(timeoutInMilliSeconds);
+});
+
+function monitor_tabs (timeout) {
+  chrome.tabs.query({})
+    .then(async (tabs) => {
       // Remove tab if tab hasn't been accessed in a Timeout
       for (const tab of tabs) {
-        console.log(Date.now(), tab.lastAccessed);
-        if (Date.now() - tab.lastAccessed >= timeoutInMilliSeconds) {
-          sendResponse('Tab has been removed');
+        console.log(Date.now(), tab.lastAccessed, timeout, tab.id);
+        if (Date.now() - tab.lastAccessed >= timeout) {
+          try {
+           await chrome.runtime.sendMessage('tab removed');
+          } catch(err) {
+            console.log(err);
+          }
           chrome.tabs.remove(tab.id);
         }
       }
-
-      sendResponse('done');
     });
-
-  return true;
-});
+}

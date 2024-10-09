@@ -1,0 +1,13 @@
+{
+	"manifest_version": 3,
+	"name": "Tab Timer",
+	"description": "Manages inactive tabs",
+	"version": "1.0",
+	"action": {
+		"default_popup": "index.html",
+		"default_title": "Tab Timer"
+	},
+	"background": {
+		"service_worker": "monitor_tabs.js"
+	}
+}

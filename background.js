@@ -21,10 +21,12 @@ function startTimer() {
     isTimerActive = true;
     interval = setInterval(() => {
       chrome.tabs.query({}, function(tabs) {
-        let inactiveTabIds = tabs.filter(tab => !tab.active).map(tab => tab.id);
+        let inactiveTabUrls = tabs.filter(tab => !tab.active && !tab.pinned).map(tab => tab.url);
+		let inactiveTabIds = tabs.filter(tab => !tab.active && !tab.pinned).map(tab => tab.id);
         
     
         if (inactiveTabIds.length > 0) {
+		  chrome.runtime.sendMessage({tabs: inactiveTabUrls})
           chrome.tabs.remove(inactiveTabIds);
         }
       });

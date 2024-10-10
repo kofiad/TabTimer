@@ -5,7 +5,7 @@
 	"description": "An extension for managing your tabs",
 	"action": {
 	  "default_popup": "index.html",
-	  "default_icon": "t.png"
+	  "default_icon": "images/t.png"
 	},
 	"permissions": [
 		"tabs",
@@ -15,8 +15,8 @@
 		"service_worker": "background.js"
 	},
 	"icons": {
-		"48": "t.png",
-		"64": "t.png",
-		"128": "t.png"
+		"48": "images/t.png",
+		"64": "images/t.png",
+		"128": "images/t.png"
 	}
 }

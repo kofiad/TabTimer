@@ -1,5 +1,7 @@
 playBtn = document.querySelector(".bx-play");
 pauseBtn = document.querySelector(".bx-pause");
+urlList = document.querySelector("#urls");
+
 
 chrome.storage.sync.get(['timerState', 'timerValues'], function(data) {
     if (data.timerState === 'paused') {
@@ -51,3 +53,50 @@ pauseBtn.addEventListener('click', function () {
     playBtn.classList.toggle("hidden");
 });
 
+chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
+    if (message.tabs) {
+        chrome.storage.session.set({'closedTabs': message.tabs});
+    }
+});
+
+
+chrome.storage.onChanged.addListener((changes, areaName) => {
+    if (areaName === 'session' && changes.closedTabs) {
+        chrome.storage.session.get(['closedTabs']).then((result) => {
+            const closedTabs = result.closedTabs || [];
+            
+            urlList.innerHTML = ''; 
+
+            closedTabs.forEach(url => {
+                let url2 = url.split('?')[0];
+                let list = document.createElement("li");
+                list.innerHTML = `<a href="${url}">${url2}</a>`;
+
+                let temp = false;
+
+                for (let item of urlList.children) {
+                    let existingUrl = item.querySelector("a").href;
+                    if (existingUrl === url) {
+                        temp = true;
+                        break; 
+                    }
+                }
+
+                if (!temp) {
+                    urlList.appendChild(list);
+                }
+            });
+        });
+    }
+});
+
+
+chrome.storage.session.get(['closedTabs']).then((result) => {
+    const closedTabs = result.closedTabs || [];
+    closedTabs.forEach(url => {
+        let url2 = url.split('?')[0];
+        let list = document.createElement("li");
+        list.innerHTML = `<a href="${url}">${url2}</a>`;
+        urlList.appendChild(list);
+    });
+});

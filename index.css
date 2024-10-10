@@ -1,0 +1,56 @@
+body {
+	margin: 0;
+	background-color: black;
+	padding: 5px;
+	width: 300px;
+	margin: 0 auto;
+	text-align: center;
+	color: white;
+}
+
+h1 {
+	margin-top: 0;
+}
+.clock, .time {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+.time {
+	color: white;
+	font-weight: 700;
+}
+i {
+	font-size: 30px;
+}
+
+input[type="number"] {
+	padding: 5px;
+	background-color: black;
+	border-radius: 5px;
+	border: 1px solid white;
+	color: white;
+}
+
+input::placeholder {
+	color: white;
+}
+.hidden {
+	display: none;
+}
+
+.url-container {
+	text-align: left;
+	margin: 10px 0;
+}
+
+#urls li {
+	margin-top: 5px;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+	overflow: hidden;
+}
+
+a {
+	color: white;
+}

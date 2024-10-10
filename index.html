@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Tab Remover</title>
+	<link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+	<link href="./index.css" rel="stylesheet">
+</head>
+<body>
+	<h1>Tab Time Bomb</h1>
+	<div class="clock">
+		<div>
+			<i class='bx bx-play' style='color:#ffffff'  ></i>
+			<i class='bx bx-pause hidden' style='color:#ffffff' ></i>
+		</div>
+		<div class="time">
+			<input type="number" class="hour" min="0" max="24" placeholder="hour"><i class='bx bx-dots-vertical-rounded' style='color:#fffbfb'  ></i>
+			<input type="number" class="mins" min="0" max="60" placeholder="mins"><i class='bx bx-dots-vertical-rounded' style='color:#fffbfb'  ></i>
+			<input type="number" class="secs" min="0" max="60" placeholder="secs">
+		</div>
+	</div>
+	<h3>Previously closed Tabs</h3>
+	<div class="url-container">
+		<url id="urls">
+		</url>
+	</div>
+	<script src="index.js"></script>
+</body>
+</html>

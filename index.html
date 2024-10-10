@@ -7,15 +7,17 @@
 	<link href="./index.css" rel="stylesheet">
 </head>
 <body>
-	<div>
-		<i class='bx bx-play' style='color:#ffffff'  ></i>
-		<i class='bx bx-pause hidden' style='color:#ffffff' ></i>
-	</div>
-	<div class="time">
-		<input type="number" class="hour" min="0" max="24">:
-		<input type="number" class="mins" min="0" max="60">:
-		<input type="number" class="secs" min="0" max="60">
-		<button type="submit" id="submitBtn">Start</button>
+	<h1>Tab Time Bomb</h1>
+	<div class="clock">
+		<div>
+			<i class='bx bx-play' style='color:#ffffff'  ></i>
+			<i class='bx bx-pause hidden' style='color:#ffffff' ></i>
+		</div>
+		<div class="time">
+			<input type="number" class="hour" min="0" max="24" placeholder="hour"><i class='bx bx-dots-vertical-rounded' style='color:#fffbfb'  ></i>
+			<input type="number" class="mins" min="0" max="60" placeholder="mins"><i class='bx bx-dots-vertical-rounded' style='color:#fffbfb'  ></i>
+			<input type="number" class="secs" min="0" max="60" placeholder="secs">
+		</div>
 	</div>
 	<script src="index.js"></script>
 </body>

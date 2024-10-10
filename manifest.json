@@ -5,12 +5,18 @@
 	"description": "An extension for managing your tabs",
 	"action": {
 	  "default_popup": "index.html",
-	  "default_icon": "icon_extension.png"
+	  "default_icon": "t.png"
 	},
 	"permissions": [
-		"tabs"
+		"tabs",
+		"storage"
 	],
 	"background": {
 		"service_worker": "background.js"
+	},
+	"icons": {
+		"48": "t.png",
+		"64": "t.png",
+		"128": "t.png"
 	}
 }

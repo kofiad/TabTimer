@@ -53,12 +53,6 @@ pauseBtn.addEventListener('click', function () {
     playBtn.classList.toggle("hidden");
 });
 
-chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
-    if (message.tabs) {
-        chrome.storage.session.set({'closedTabs': message.tabs});
-    }
-});
-
 
 chrome.storage.onChanged.addListener((changes, areaName) => {
     if (areaName === 'session' && changes.closedTabs) {
@@ -67,16 +61,14 @@ chrome.storage.onChanged.addListener((changes, areaName) => {
             
             urlList.innerHTML = ''; 
 
-            closedTabs.forEach(url => {
-                let url2 = url.split('?')[0];
+            closedTabs.forEach(tab => {
                 let list = document.createElement("li");
-                list.innerHTML = `<a href="${url}">${url2}</a>`;
+                list.innerHTML = `<a href="${tab.url}" target="_blank">${tab.title}</a>`;
 
                 let temp = false;
-
                 for (let item of urlList.children) {
                     let existingUrl = item.querySelector("a").href;
-                    if (existingUrl === url) {
+                    if (existingUrl === tab.url) {
                         temp = true;
                         break; 
                     }
@@ -93,10 +85,10 @@ chrome.storage.onChanged.addListener((changes, areaName) => {
 
 chrome.storage.session.get(['closedTabs']).then((result) => {
     const closedTabs = result.closedTabs || [];
-    closedTabs.forEach(url => {
-        let url2 = url.split('?')[0];
+    closedTabs.forEach(tab => {
         let list = document.createElement("li");
-        list.innerHTML = `<a href="${url}">${url2}</a>`;
+        list.innerHTML = `<a href="${tab.url}" target="_blank">${tab.title}</a>`;
         urlList.appendChild(list);
     });
 });
+

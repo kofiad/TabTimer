@@ -15,7 +15,7 @@ TabTimer helps you keep your browser clutter-free by automatically closing idle 
 
 ## Demo
 
-<video controls src="images/InShot_20241014_214543643.mp4" title="demo video of tab timer"></video>
+https://github.com/user-attachments/assets/2951e8d5-e115-459c-b133-80f1e804add9
 
 
 ## Build Instructions

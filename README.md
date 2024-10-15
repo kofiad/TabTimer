@@ -4,6 +4,7 @@ TabTimer helps you keep your browser clutter-free by automatically closing idle 
 
 ![tab timer](images/image.png)
 
+
 ## Features
 
 - Tracking mechanism for tracking each idle tab time separately
